@@ -244,17 +244,17 @@ const Home: React.FC = () => {
           Your browser does not support the video tag.
         </video>
         {/* Optional: Overlay to darken the video */}
-        <div className={`absolute inset-0 ${isDarkMode ? 'bg-black bg-opacity-60' : 'bg-white bg-opacity-80'}`}></div>
+        <div className={`absolute inset-0 ${isDarkMode ? 'bg-black bg-opacity-60' : 'bg- bg-opacity-10'}`}></div>
       </div>
 
       {/* Content */}
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto text-center">
           <div className={`transition-all duration-1000 transform ${isVisible.hero ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-            <h1 className={`text-5xl md:text-6xl font-bold mb-6 ${isDarkMode ? 'text-gray-100' : 'text-gray-800'}`}>
+            <h1 className={`text-5xl md:text-6xl font-bold mb-6 ${isDarkMode ? 'text-gray-100' : 'text-gray-200'}`}>
               Emmanuel <span className="text-blue-600">Kenneth</span>
             </h1>
-            <p className={`text-xl md:text-2xl ${isDarkMode ? 'text-gray-300' : 'text-gray-600'} mb-10`}>
+            <p className={`text-xl md:text-2xl ${isDarkMode ? 'text-gray-300' : 'text-gray-200'} mb-10`}>
               Professional Surveyor | Project Manager | Geomatics Expert
             </p>
             <div className="flex flex-col md:flex-row justify-center gap-4">
