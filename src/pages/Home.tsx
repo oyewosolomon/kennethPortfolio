@@ -165,8 +165,8 @@ const Home: React.FC = () => {
   const galleryImages: GalleryImage[] = [
     { id: 1, src: '/images/image-1.jpg', alt: 'Cadastral survey work', caption: 'Cadastral Survey' },
     { id: 2, src: '/images/image-2.jpg', alt: 'Hydrographic survey work', caption: 'Hydrographic Mapping' },
-    { id: 3, src: '/api/placeholder/600/800', alt: 'Topographic survey work', caption: 'Topographic Mapping' },
-    { id: 4, src: '/api/placeholder/600/800', alt: 'Aerial photogrammetry', caption: 'Aerial Photogrammetry' }
+    { id: 3, src: '/images/image-3.jpg', alt: 'Topographic survey work', caption: 'Topographic Mapping' },
+    { id: 4, src: '/images/image-4.jpg', alt: 'Aerial photogrammetry', caption: 'Aerial Photogrammetry' }
   ];
 
   return (
@@ -383,7 +383,7 @@ const Home: React.FC = () => {
               <div className="lg:w-1/2 h-full overflow-hidden">
                 <div 
                   ref={galleryRef}
-                  className="h-96 lg:h-128 grid grid-cols-2 overflow-auto hide-scrollbar"
+                  className="h-96 lg:h-128 overflow-auto hide-scrollbar"
                   style={{ scrollBehavior: 'smooth' }}
                 >
                   <div className="space-y-8">
