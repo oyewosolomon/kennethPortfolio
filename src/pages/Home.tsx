@@ -159,6 +159,31 @@ const Home: React.FC = () => {
       title: 'Aerial Photogrammetry',
       description: 'High-precision 3D mapping using drone technology.',
       icon: '🛸'
+    },
+    {
+      title: 'Land Survey',
+      description: 'Determining and marking property lines, resolving disputes, and designing subdivisions.',
+      icon: '📍'
+    },
+    {
+      title: 'Engineering/Construction Survey',
+      description: 'Marking proposed structures, ensuring accurate placement, and verifying as-built conditions.',
+      icon: '🏗️'
+    },
+    {
+      title: 'Route Survey',
+      description: 'Surveying linear strips of land for roads, pipelines, and transmission lines.',
+      icon: '🛣️'
+    },
+    {
+      title: 'Aerial Survey (Photogrammetric Survey)',
+      description: 'Creating maps and 3D models using aerial photographs or LiDAR data.',
+      icon: '🛩️'
+    },
+    {
+      title: '3D Laser Scanning',
+      description: 'Capturing detailed 3D data for architectural, industrial, and accident reconstruction purposes.',
+      icon: '🔍'
     }
   ];
 
@@ -244,17 +269,17 @@ const Home: React.FC = () => {
           Your browser does not support the video tag.
         </video>
         {/* Optional: Overlay to darken the video */}
-        <div className={`absolute inset-0 ${isDarkMode ? 'bg-black bg-opacity-60' : 'bg- bg-opacity-10'}`}></div>
+        <div className={`absolute inset-0 ${isDarkMode ? 'bg-black bg-opacity-60' : 'bg-white bg-opacity-80'}`}></div>
       </div>
 
       {/* Content */}
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto text-center">
           <div className={`transition-all duration-1000 transform ${isVisible.hero ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-            <h1 className={`text-5xl md:text-6xl font-bold mb-6 ${isDarkMode ? 'text-gray-100' : 'text-gray-200'}`}>
+            <h1 className={`text-5xl md:text-6xl font-bold mb-6 ${isDarkMode ? 'text-gray-100' : 'text-gray-800'}`}>
               Emmanuel <span className="text-blue-600">Kenneth</span>
             </h1>
-            <p className={`text-xl md:text-2xl ${isDarkMode ? 'text-gray-300' : 'text-gray-200'} mb-10`}>
+            <p className={`text-xl md:text-2xl ${isDarkMode ? 'text-gray-300' : 'text-gray-600'} mb-10`}>
               Professional Surveyor | Project Manager | Geomatics Expert
             </p>
             <div className="flex flex-col md:flex-row justify-center gap-4">
@@ -457,7 +482,10 @@ const Home: React.FC = () => {
                 Offering a comprehensive range of professional surveying services tailored to meet your specific needs
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className='max-w-7xl mx-auto'>
+
+           
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {services.map((service, index) => (
                 <div 
                   key={index}
@@ -468,6 +496,7 @@ const Home: React.FC = () => {
                   <p className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>{service.description}</p>
                 </div>
               ))}
+            </div>
             </div>
           </div>
         </div>
