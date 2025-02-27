@@ -240,7 +240,7 @@ const Home: React.FC = () => {
           muted 
           className="w-full h-full object-cover"
         >
-          <source src="/image/vid.mp4" type="video/mp4" />
+          <source src="/images/All survey instruments.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         {/* Optional: Overlay to darken the video */}
