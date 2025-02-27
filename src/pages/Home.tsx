@@ -216,7 +216,7 @@ const Home: React.FC = () => {
   <nav className={`fixed w-full ${isScrolled ? 'bg-white shadow-md' : ''} ${isDarkMode ? 'bg-gray-800' : ''} z-50 py-4`}>
     <div className="container mx-auto px-4 flex justify-between items-center">
       <div className={`text-2xl font-bold ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`}>
-        Emmanuel<span className={isDarkMode ? 'text-gray-200' : 'text-gray-800'}>.Survey</span>
+        Kenneth<span className={isDarkMode ? 'text-gray-200' : 'text-gray-800'}> Surveys</span>
       </div>
 
       {/* Desktop Navigation */}
@@ -238,7 +238,10 @@ const Home: React.FC = () => {
       </div>
 
       {/* Mobile Navigation Button */}
-      <div className="md:hidden">
+      <div className="md:hidden flex">
+      <button onClick={toggleDarkMode} className="px-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
+          {isDarkMode ? '🌙' : '☀️'}
+        </button>
         <button onClick={toggleMenu} className={isDarkMode ? 'text-gray-300' : 'text-gray-800'}>
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
