@@ -46,6 +46,21 @@ const Home: React.FC = () => {
   const [scrollPosition, setScrollPosition] = useState<number>(0);
   const galleryRef = useRef<HTMLDivElement>(null);
   const autoScrollRef = useRef<NodeJS.Timeout | null>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Add scroll event listener
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     setIsVisible({
@@ -195,122 +210,129 @@ const Home: React.FC = () => {
   ];
 
   return (
+    <>
     <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900 text-gray-100' : 'bg-gray-50 text-gray-800'}`}>
-      {/* Navigation */}
-      <nav className={`fixed w-full ${isDarkMode ? 'bg-gray-800' : ''} z-50 py-4`}>
-        <div className="container mx-auto px-4 flex justify-between items-center">
-          <div className={`text-2xl font-bold ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`}>
-            Emmanuel<span className={isDarkMode ? 'text-gray-200' : 'text-gray-800'}>.Survey</span>
-          </div>
-          
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map(item => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className={`font-medium hover:text-blue-600 transition-colors ${
-                  activeSection === item.id ? 'text-blue-600' : isDarkMode ? 'text-gray-300' : 'text-gray-600'
-                }`}
-              >
-                {item.label}
-              </button>
-            ))}
-            <button onClick={toggleDarkMode} className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
-              {isDarkMode ? '🌙' : '☀️'}
-            </button>
-          </div>
-          
-          {/* Mobile Navigation Button */}
-          <div className="md:hidden">
-            <button onClick={toggleMenu} className={isDarkMode ? 'text-gray-300' : 'text-gray-800'}>
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-        </div>
-        
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className={`md:hidden ${isDarkMode ? 'bg-gray-800' : 'bg-white'} py-4 px-4 shadow-inner`}>
-            <div className="flex flex-col space-y-4">
-              {navItems.map(item => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className={`font-medium hover:text-blue-600 transition-colors ${
-                    activeSection === item.id ? 'text-blue-600' : isDarkMode ? 'text-gray-300' : 'text-gray-600'
-                  }`}
-                >
-                  {item.label}
-                </button>
-              ))}
-              <button onClick={toggleDarkMode} className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
-                {isDarkMode ? '🌙' : '☀️'}
-              </button>
-            </div>
-          </div>
-        )}
-      </nav>
-      
-      {/* Hero Section */}
-      <section 
-      id="home" 
-      className={`relative pt-28 pb-16 md:pt-48 md:pb-24 ${isDarkMode ? 'bg-gray-800' : 'bg-gradient-to-br from-blue-50 to-gray-100'}`}
-    >
-      {/* Video Background */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        <video 
-          autoPlay 
-          loop 
-          muted 
-          className="w-full h-full object-cover"
-        >
-          <source src="/images/All survey instruments.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-        {/* Optional: Overlay to darken the video */}
-        <div className={`absolute inset-0 ${isDarkMode ? 'bg-black bg-opacity-60' : 'bg-white bg-opacity-80'}`}></div>
+  {/* Navigation */}
+  <nav className={`fixed w-full ${isScrolled ? 'bg-white shadow-md' : ''} ${isDarkMode ? 'bg-gray-800' : ''} z-50 py-4`}>
+    <div className="container mx-auto px-4 flex justify-between items-center">
+      <div className={`text-2xl font-bold ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`}>
+        Emmanuel<span className={isDarkMode ? 'text-gray-200' : 'text-gray-800'}>.Survey</span>
       </div>
 
-      {/* Content */}
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-3xl mx-auto text-center">
-          <div className={`transition-all duration-1000 transform ${isVisible.hero ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-            <h1 className={`text-5xl md:text-6xl font-bold mb-6 ${isDarkMode ? 'text-gray-100' : 'text-gray-800'}`}>
-              Emmanuel <span className="text-blue-600">Kenneth</span>
-            </h1>
-            <p className={`text-xl md:text-2xl ${isDarkMode ? 'text-gray-300' : 'text-gray-600'} mb-10`}>
-              Professional Surveyor | Project Manager | Geomatics Expert
-            </p>
-            <div className="flex flex-col md:flex-row justify-center gap-4">
-              <button 
-                onClick={() => scrollToSection('contact')}
-                className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-lg transition-all shadow-lg hover:shadow-xl"
-              >
-                Get in Touch
-              </button>
-              <button 
-                onClick={() => scrollToSection('gallery')}
-                className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600 text-gray-100' : 'bg-white hover:bg-gray-100 text-blue-600'} font-medium py-3 px-8 rounded-lg border border-blue-200 transition-all shadow-md hover:shadow-lg`}
-              >
-                View Gallery
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Scroll Down Button */}
-      <div className="flex justify-center mt-16 relative z-10">
-        <button 
-          onClick={() => scrollToSection('about')}
-          className={`animate-bounce ${isDarkMode ? 'bg-gray-700' : 'bg-white'} p-3 rounded-full shadow-md`}
-        >
-          <ChevronDown size={24} className="text-blue-600" />
+      {/* Desktop Navigation */}
+      <div className="hidden md:flex items-center space-x-8">
+        {navItems.map((item) => (
+          <button
+            key={item.id}
+            onClick={() => scrollToSection(item.id)}
+            className={`font-medium hover:text-blue-600 transition-colors ${
+              activeSection === item.id ? 'text-blue-600' : isDarkMode ? 'text-gray-300' : 'text-gray-600'
+            }`}
+          >
+            {item.label}
+          </button>
+        ))}
+        <button onClick={toggleDarkMode} className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
+          {isDarkMode ? '🌙' : '☀️'}
         </button>
       </div>
-    </section>
-      
+
+      {/* Mobile Navigation Button */}
+      <div className="md:hidden">
+        <button onClick={toggleMenu} className={isDarkMode ? 'text-gray-300' : 'text-gray-800'}>
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </div>
+    </div>
+
+    {/* Mobile Menu */}
+    {isMenuOpen && (
+      <div className={`md:hidden ${isDarkMode ? 'bg-gray-800' : 'bg-white'} py-4 px-4 shadow-inner`}>
+        <div className="flex flex-col space-y-4">
+          {navItems.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => scrollToSection(item.id)}
+              className={`font-medium hover:text-blue-600 transition-colors ${
+                activeSection === item.id ? 'text-blue-600' : isDarkMode ? 'text-gray-300' : 'text-gray-600'
+              }`}
+            >
+              {item.label}
+            </button>
+          ))}
+          <button onClick={toggleDarkMode} className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
+            {isDarkMode ? '🌙' : '☀️'}
+          </button>
+        </div>
+      </div>
+    )}
+  </nav>
+
+  {/* Hero Section */}
+  <section
+    id="home"
+    className={`relative h-screen flex items-center justify-center ${
+      isDarkMode ? 'bg-gray-800' : 'bg-gradient-to-br from-blue-50 to-gray-100'
+    }`}
+  >
+    {/* Video Background */}
+    <div className="absolute inset-0 z-0 overflow-hidden">
+      <video
+        autoPlay
+        loop
+        muted
+        className="w-full h-full object-cover"
+      >
+        <source src="/images/All survey instruments.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      {/* Optional: Overlay to darken the video */}
+      <div className={`absolute inset-0 ${isDarkMode ? 'bg-black bg-opacity-60' : 'bg-white bg-opacity-80'}`}></div>
+    </div>
+
+    {/* Content */}
+    <div className="container mx-auto px-4 relative z-10">
+      <div className="max-w-3xl mx-auto text-center">
+        <div className={`transition-all duration-1000 transform ${
+          isVisible.hero ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+        }`}>
+          <h1 className={`text-5xl md:text-6xl font-bold mb-6 ${isDarkMode ? 'text-gray-100' : 'text-gray-800'}`}>
+            Emmanuel <span className="text-blue-600">Kenneth</span>
+          </h1>
+          <p className={`text-xl md:text-2xl ${isDarkMode ? 'text-gray-300' : 'text-gray-600'} mb-10`}>
+            Professional Surveyor | Project Manager | Geomatics Expert
+          </p>
+          <div className="flex flex-col md:flex-row justify-center gap-4">
+            <button
+              onClick={() => scrollToSection('contact')}
+              className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-lg transition-all shadow-lg hover:shadow-xl"
+            >
+              Get in Touch
+            </button>
+            <button
+              onClick={() => scrollToSection('gallery')}
+              className={`${
+                isDarkMode ? 'bg-gray-700 hover:bg-gray-600 text-gray-100' : 'bg-white hover:bg-gray-100 text-blue-600'
+              } font-medium py-3 px-8 rounded-lg border border-blue-200 transition-all shadow-md hover:shadow-lg`}
+            >
+              View Gallery
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Scroll Down Button */}
+    <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+      <button
+        onClick={() => scrollToSection('about')}
+        className={`animate-bounce ${isDarkMode ? 'bg-gray-700' : 'bg-white'} p-3 rounded-full shadow-md`}
+      >
+        <ChevronDown size={24} className="text-blue-600" />
+      </button>
+    </div>
+  </section>
+</div>
       {/* About Section */}
       <section id="about" className={`py-20 ${isDarkMode ? 'bg-gray-900' : 'bg-white'}`}>
         <div className="container mx-auto px-4">
@@ -322,7 +344,7 @@ const Home: React.FC = () => {
             <div className="flex flex-col lg:flex-row items-center justify-between gap-16">
               <div className="lg:w-1/2">
                 <div className="aspect-square w-full max-w-sm mx-auto bg-gray-200 rounded-2xl shadow-xl overflow-hidden">
-                  <img src="/images/kenneth.JPG" alt="Emmanuel Kenneth portrait" className="w-full h-full object-cover" />
+                  <img src="/images/ken.jpeg" alt="Emmanuel Kenneth portrait" className="w-full h-full object-cover" />
                 </div>
               </div>
               <div className="lg:w-1/2">
@@ -624,7 +646,7 @@ const Home: React.FC = () => {
           <p className="text-gray-400">© {new Date().getFullYear()} Emmanuel Kenneth Surveying Services. All rights reserved.</p>
         </div>
       </footer>
-    </div>
+    </>
   );
 };
 
