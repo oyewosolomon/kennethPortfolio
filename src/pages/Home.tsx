@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ChevronDown, Mail, Phone, MapPin, Linkedin, Github, Menu, X } from 'lucide-react';
+import { ChevronDown, Mail, Phone, MapPin, Linkedin, Github, Menu, X, Facebook, Instagram, Youtube } from 'lucide-react';
 import Gallery from '@/components/Gallery';
+import { FaTiktok, FaXTwitter } from "react-icons/fa6";
 
 interface Experience {
   year: string;
@@ -549,7 +550,7 @@ const Home: React.FC = () => {
                       </div>
                       <div>
                         <div className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-500'}`}>Email</div>
-                        <div className={`font-medium ${isDarkMode ? 'text-gray-100' : 'text-gray-800'}`}>emmanuel@example.com</div>
+                        <div className={`font-medium ${isDarkMode ? 'text-gray-100' : 'text-gray-800'}`}>work@kennethemmanuel.com</div>
                       </div>
                     </div>
                     <div className="flex items-center gap-4">
@@ -567,18 +568,27 @@ const Home: React.FC = () => {
                       </div>
                       <div>
                         <div className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-500'}`}>Office</div>
-                        <div className={`font-medium ${isDarkMode ? 'text-gray-100' : 'text-gray-800'}`}>123 Main Street, Suite 200, Anytown, USA</div>
+                        <div className={`font-medium ${isDarkMode ? 'text-gray-100' : 'text-gray-800'}`}>Street V1, Abraham Adesanya Estate, Ajah, Lagos</div>
                       </div>
                     </div>
                   </div>
                   <div className="mt-8 pt-8 border-t border-gray-200">
                     <h4 className={`font-bold mb-4 ${isDarkMode ? 'text-gray-100' : 'text-gray-800'}`}>Connect</h4>
                     <div className="flex gap-4">
-                      <a href="https://fb.com/emmanuel.kenneth54" className="bg-gray-100 p-3 rounded-lg hover:bg-blue-100 transition-colors">
-                        <Linkedin className="text-gray-700 hover:text-blue-600" size={20} />
+                      <a href="www.facebook.com/emmanuel.kenneth.54" className="bg-gray-100 p-3 rounded-lg hover:bg-blue-100 transition-colors">
+                        <Facebook className="text-gray-700 hover:text-blue-600" size={20} />
                       </a>
                       <a href="https://instagram.com/manlikekenzay" className="bg-gray-100 p-3 rounded-lg hover:bg-blue-100 transition-colors">
-                        <Github className="text-gray-700 hover:text-blue-600" size={20} />
+                        <Instagram className="text-gray-700 hover:text-blue-600" size={20} />
+                      </a>
+                      <a href="https://www.linkedin.com/in/kennethemmanuel?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" className="bg-gray-100 p-3 rounded-lg hover:bg-blue-100 transition-colors">
+                        <Linkedin className="text-gray-700 hover:text-blue-600" size={20} />
+                      </a>
+                      <a href="https://tiktok.com/@manlikekenzay" className="bg-gray-100 p-3 rounded-lg hover:bg-blue-100 transition-colors">
+                        <FaTiktok className="text-gray-700 hover:text-blue-600" size={20} />
+                      </a>
+                      <a href="https://twitter.com/iamkobaken" className="bg-gray-100 p-3 rounded-lg hover:bg-blue-100 transition-colors">
+                        <FaXTwitter className="text-gray-700 hover:text-blue-600" size={20} />
                       </a>
                     </div>
                   </div>
@@ -644,9 +654,9 @@ const Home: React.FC = () => {
       <footer className={`py-8 ${isDarkMode ? 'bg-gray-900' : 'bg-gray-800'} text-white`}>
         <div className="container mx-auto px-4 text-center">
           <div className="text-xl font-bold mb-4">
-            Emmanuel<span className="text-blue-400">.Survey</span>
+            Kenneth<span className="text-blue-400"> Surveys</span>
           </div>
-          <p className="text-gray-400">© {new Date().getFullYear()} Emmanuel Kenneth Surveying Services. All rights reserved.</p>
+          <p className="text-gray-400">© {new Date().getFullYear()} Kenneth Surveying Solutions. All rights reserved.</p>
         </div>
       </footer>
     </>
